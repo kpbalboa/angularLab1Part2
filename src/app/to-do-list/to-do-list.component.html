@@ -1,0 +1,28 @@
+<header>
+  <h1>
+    TODO List
+  </h1>
+  A place to hold your todos
+</header>
+<app-filter></app-filter>
+
+<div *ngFor="let todo of toDos; index as i" class="todo-item">
+  <div *ngIf="todo.completed; else elseBlock" class="todo-item-left">
+    {{ i + 1 }}.
+    <div [ngClass]="['todo-item-label', 'completed']">
+      {{ todo.title }}
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="todo-item-left">
+      {{ i + 1 }}.
+      <button (click)="complete(i)" class="complete">Complete</button>
+
+      <div [ngClass]="todo - item - label">
+        {{ todo.title }}
+      </div>
+    </div>
+  </ng-template>
+  <button (click)="deleteItem(i)">x</button>
+</div>
+<app-form (onAdd)="onAddHandler($event)"></app-form>
